@@ -1,18 +1,35 @@
-// beep buzzer
+int a = 9;      //trigger
+int b = 10;     //echo
+int duration;
+int distance;
 int buzzer = 6;
-int LDR = A0;
+
 void setup() {
   // put your setup code here, to run once:
+  pinMode(a,OUTPUT);
+  pinMode(b,INPUT);
   pinMode(buzzer,OUTPUT);
-  pinMode(LDR,INPUT);
+  Serial.begin(9600);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  if(analogRead(LDR)<200){
+  //trigger
+  digitalWrite(a,LOW);
+  delayMicroseconds(2);
+  digitalWrite(a,HIGH);
+  delayMicroseconds(10);
+  digitalWrite(a,LOW);
+
+  //echo
+  duration = pulseIn(b,HIGH);
+  distance = (duration*0.0343)/2;
+  Serial.println(distance);
+
+  if(distance<10){
     tone(buzzer,1500,500);
     delay(1000);
+  }else{
+    tone(buzzer,0,500);
   }
-
 }
-
