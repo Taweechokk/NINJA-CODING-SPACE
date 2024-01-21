@@ -1,0 +1,57 @@
+#include "pitches.h"
+
+const int buzzer = 7;
+const int trig  = 8;
+const int echo  = 9;
+int distance, duration,buffer;
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(buzzer,OUTPUT);
+  pinMode(trig,OUTPUT);
+  pinMode(echo,INPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  //trigger
+  digitalWrite(trig,LOW);
+  delayMicroseconds(2);
+  digitalWrite(trig,HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trig,LOW);
+
+  //echo
+  duration = pulseIn(echo,HIGH);
+  distance = (duration*0.0343)/2;
+  Serial.println(distance);
+  //delay(1000);
+
+
+  if(distance>0&&distance<4){               //tone1
+    tone(buzzer, NOTE_C4, 200);
+    delay(1000);
+  }else if(distance>4&&distance<8){         //tone2
+    tone(buzzer, NOTE_D4, 200);
+    delay(1000);
+  }else if(distance>8&&distance<12){        //tone3
+    tone(buzzer, NOTE_E4, 200);
+    delay(1000);
+  }else if(distance>12&&distance<16){       //tone4
+    tone(buzzer, NOTE_F4, 200);
+    delay(1000);
+  }else if(distance>16&&distance<20){       //tone5
+    tone(buzzer, NOTE_G4, 200);
+    delay(1000);
+  }else if(distance>20&&distance<24){       //tone6
+    tone(buzzer, NOTE_A4, 200);
+    delay(1000);
+  }else if(distance>24&&distance<28){       //tone7
+    tone(buzzer, NOTE_B4, 200);
+    delay(1000);
+  }else{
+    noTone(buzzer);
+    delay(1000);
+  }
+}
