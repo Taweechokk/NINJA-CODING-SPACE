@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int i;
+    int sum=0;
+    float avg;
+    for(i=0;i>=1000;i++)
+    {
+        sum=sum+i;
+    }
+    avg=sum/1000;
+    printf("average = %f",avg);
+}
