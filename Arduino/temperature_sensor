@@ -3,6 +3,7 @@ const int sensorPin = A0;
 
 void setup() {
   // Initialize serial communication at 9600 baud rate
+  pinMode(sensorPin,INPUT);
   Serial.begin(9600);
 }
 
@@ -14,7 +15,7 @@ void loop() {
   float voltage = sensorValue * (5000.0 / 1024.0); // 5000 mV is the 5V Arduino supply voltage
   
   // Convert voltage to temperature in Celsius
-  float temperatureC = (voltage - 400.0) / 19.5;
+  float temperatureC = (voltage - 500.0) / 19.5;
   
   // Print temperature to serial monitor
   Serial.println(temperatureC); // Send temperature value without text
